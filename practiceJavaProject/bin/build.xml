@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AutomateBuild"   default ="run" basedir=".">
+	<description>   
+	        Ant build sample for running 
+	      	- pmd, 
+	        - checkstyle, 
+	    </description>
+	
+	<property name="pmd.home.dir" value="C:/Users/551223/Desktop/PMD and checkstyle/pmd-bin-5.2.3" />
+	<property name="report.dir" location="${basedir}/Reports" />
+	<property name="report.pmd.dir" location="${report.dir}/pmdReport" />
+	<property name="src.dir" location="${basedir}" />
+	<property name="checkstyle.home.dir" location="C:\Users\551223\Desktop\PMD and checkstyle\checkstyle unjar" />
+	<property name="report.checkstyle.dir" location="${report.dir}/checkstyleReport" />
+	
+	
+		<target name="clean" description="Delete all result to start with a clean build.">
+			<echo message="----Deleting PMD Report"/>
+	        <delete dir="${report.pmd.dir}" />
+			<delete dir="${report.checkstyle.dir}" />
+		</target>
+	
+		<target name="prepare.report.dir" description="Prepares the reports folder">
+			<echo message="Creating Reports Folder"/>
+		<mkdir dir="${report.dir}" />
+	    </target>
+	
+	
+		<path id="pmd.classpath">
+			<fileset dir="${pmd.home.dir}/lib/">
+ 			<include name="*.jar"/>
+ 			</fileset>
+   		 </path>
+	
+		<target name="pmd">
+			<echo message="----Checking PMD violations to generate Report"/>
+				<taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask"  classpathref="pmd.classpath"/>
+			
+			<echo message="----creating PMD report folder"/>
+			<mkdir dir="${report.pmd.dir}" />
+			<pmd shortFilenames="true" rulesetfiles="rulesets/internal/all-java.xml">
+  				<sourceLanguage name="java" version="1.6"/>
+   				<formatter type="xml" toFile="${report.pmd.dir}/pmd_report.xml" toConsole="true"/>
+ 				<fileset dir="${src.dir}">
+   					<include name="**/*.java"/>
+  				</fileset>
+ 			</pmd>
+		</target>
+	
+	<path id="checks.classpath">
+				<fileset dir="${checkstyle.home.dir}/">
+	 			<include name="*.jar"/>
+	 			</fileset>
+	   		 </path>
+	
+	<target name="checkstyle" 
+	        description="Generate a report of code convention violations.">
+		<echo message="----Checking checkstyle violations to generate Report"/>
+		
+	        <taskdef resource="checkstyletask.properties"
+	                 classpath="${checkstyle.home.dir}/checkstyle-6.5-all.jar"
+	        />
+
+	        <!-- run verification of installation-->
+	        <available file="${checkstyle.home.dir}/checkstyle-6.5-all.jar"
+	                   property="checkstyle.available"
+	        />
+	        <fail unless="checkstyle.available"
+	              message="Error: CHECKSTYLE_HOME not set or checkstyle-6.5.jar not found."
+	        />
+		<echo message="----creating Checkstyle reports Folder"/>
+	        <mkdir dir="${report.checkstyle.dir}" />
+
+	        <!-- run analysis-->
+	        <checkstyle config="${checkstyle.home.dir}/sun_checks.xml"
+	                    failureProperty="checkstyle.failure"
+	                    failOnViolation="false" 
+	        >
+	            <formatter type="xml" tofile="${report.checkstyle.dir}/checkstyle_report.xml" />
+	            <fileset dir="${src.dir}" includes="**/*.java" />
+	        </checkstyle>
+
+	        <!--<style in="${report.checkstyle.dir}/checkstyle_report.xml"
+	               out="${report.checkstyle.dir}/checkstyle_report.html"
+	               style="${checkstyle.home.dir}/contrib/checkstyle-noframes.xsl"
+	        />-->
+	    </target>
+	
+		<target name="run"
+	            description="Run the build"
+	            depends="clean, 
+	                prepare.report.dir,
+					pmd,
+					checkstyle
+	               "
+	    >
+	    </target>
+</project>

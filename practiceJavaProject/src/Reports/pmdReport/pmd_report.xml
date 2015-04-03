@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.2.3" timestamp="2015-04-02T16:51:47.084">
+<file name="practiceJavaProject\DemoClass.java">
+<violation beginline="1" endline="1" begincolumn="9" endcolumn="27" rule="PackageCase" ruleset="Naming" package="practiceJavaProject" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/naming.html#PackageCase" priority="3">
+Package name contains upper case characters
+</violation>
+<violation beginline="5" endline="15" begincolumn="24" endcolumn="1" rule="UseUtilityClass" ruleset="Design" package="practiceJavaProject" class="DemoClass" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/design.html#UseUtilityClass" priority="3">
+All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="5" endline="15" begincolumn="8" endcolumn="1" rule="CommentRequired" ruleset="Comments" package="practiceJavaProject" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/comments.html#CommentRequired" priority="3">
+headerCommentRequirement Required
+</violation>
+<violation beginline="6" endline="6" begincolumn="33" endcolumn="45" rule="UseVarargs" ruleset="Design" package="practiceJavaProject" class="DemoClass" method="main" variable="args" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/design.html#UseVarargs" priority="4">
+Consider using varargs for methods or constructors which take an array the last parameter.
+</violation>
+<violation beginline="6" endline="6" begincolumn="33" endcolumn="45" rule="MethodArgumentCouldBeFinal" ruleset="Optimization" package="practiceJavaProject" class="DemoClass" method="main" variable="args" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'args' is not assigned and could be declared final
+</violation>
+<violation beginline="6" endline="14" begincolumn="23" endcolumn="17" rule="CommentRequired" ruleset="Comments" package="practiceJavaProject" class="DemoClass" method="main" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/comments.html#CommentRequired" priority="3">
+publicMethodCommentRequirement Required
+</violation>
+<violation beginline="7" endline="7" begincolumn="21" endcolumn="21" rule="UnusedLocalVariable" ruleset="Unused Code" package="practiceJavaProject" class="DemoClass" method="main" variable="a" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'a'.
+</violation>
+<violation beginline="7" endline="7" begincolumn="21" endcolumn="21" rule="ShortVariable" ruleset="Naming" package="practiceJavaProject" class="DemoClass" method="main" variable="a" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like a
+</violation>
+<violation beginline="7" endline="7" begincolumn="17" endcolumn="21" rule="LocalVariableCouldBeFinal" ruleset="Optimization" package="practiceJavaProject" class="DemoClass" method="main" variable="a" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'a' could be declared final
+</violation>
+<violation beginline="13" endline="13" begincolumn="17" endcolumn="34" rule="SystemPrintln" ruleset="Java Logging" package="practiceJavaProject" class="DemoClass" method="main" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
+System.out.println is used
+</violation>
+</file>
+</pmd>
